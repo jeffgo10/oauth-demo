@@ -1,17 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from 'react-dom';
+import OAuth2Login from 'react-simple-oauth2-login';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+const onSuccess = response => console.log(response);
+const onFailure = response => console.error(response);
+
+ReactDOM.render(
+  <OAuth2Login
+    authorizationUrl="https://www.facebook.com/v14.0/dialog/oauth"
+    responseType="token"
+    clientId="848288136135865"
+    redirectUri="http://primed-mind.localhost/"
+    onSuccess={onSuccess}
+    onFailure={onFailure}/>,
+  document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
